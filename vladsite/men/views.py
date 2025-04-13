@@ -1,11 +1,17 @@
 from django.http import HttpResponse, HttpResponseNotFound
 from django.shortcuts import render, redirect
+from .models import *
 
-
+menu = ['О сайте', 'Добавить статью', 'Обратная связь', 'Войти']
 # Create your views here.
 
 def index(request):
-    return HttpResponse("Страница приложения men")
+    posts = mens.objects.all()
+    return render(request, 'vladsite/index.html', {'posts': posts, 'menu': menu, 'title': 'Главная страница'})
+
+def about(request):
+    return render(request, 'vladsite/about.html', {'title': 'О сайте'})
+
 
 def name_men(request):
     return HttpResponse("<h1>Мужчины по именам<h1>")
