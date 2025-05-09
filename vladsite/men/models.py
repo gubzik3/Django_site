@@ -1,6 +1,6 @@
 from django.db import models
 from django.db.models import Model
-
+from django.urls import reverse
 
 # Create your models here.
 
@@ -14,3 +14,6 @@ class mens(models.Model):
 
     def __str__(self):
         return self.title
+
+    def get_absolute_urls(self):
+        return reverse('post', kwargs={'post_id': self.pk})
